@@ -6,7 +6,9 @@
 import scrapy
 
 
-class TabelogBeerScrapeItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class RestaurantItem(scrapy.Item):
+    restaurant_name = scrapy.Field()
+    restaurant_address = scrapy.Field()
+    restaurant_url = scrapy.Field()
+    drink_menu = scrapy.Field()
+    drink_price = scrapy.Field()
