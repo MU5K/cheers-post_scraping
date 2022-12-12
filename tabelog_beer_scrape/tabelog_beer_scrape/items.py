@@ -27,7 +27,7 @@ class RestaurantItem(scrapy.Item):
         output_processor = TakeFirst()
     )
     restaurant_address = scrapy.Field(
-        output_processor = Join("")
+        output_processor = Join(" ")
     )
     restaurant_tel = scrapy.Field(
         output_processor = TakeFirst()
