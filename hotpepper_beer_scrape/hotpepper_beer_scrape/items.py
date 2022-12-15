@@ -20,99 +20,102 @@ def strip_url(element):
 # 価格を不要な文字列を削除
 def strip_yen(element):
 
-    pattern = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込）$")
-    pattern2 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
-    pattern3 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税込(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
-    pattern4 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込み(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
-    pattern5 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税込み(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
-    pattern6 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税抜(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
-    pattern7 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
-    pattern8 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税抜き(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
-    pattern9 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜き(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
+    listed_price_type1 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
+    listed_price_type2 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税込(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
+    listed_price_type3 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込み(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
+    listed_price_type4 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税込み(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
+    listed_price_type5 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税抜(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
+    listed_price_type6 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
+    listed_price_type7 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税抜き(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円）$")
+    listed_price_type8 = re.compile(r"^(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜き(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\)$")
+    listed_price_type9 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込）$")
+    listed_price_type10 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜\)$")
+    listed_price_type11 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円$")
 
     # 価格に何も入っていなかったら空とする
     if element is None:
         return ""
 
-    # 440円（税込）
-    elif pattern.match(element):
-        return re.sub(pattern, r"\1", element)
-
     # 500円（税込550円）
-    elif pattern2.match(element):
-        return re.sub(pattern2, r"\3", element)
+    elif listed_price_type1.match(element):
+        return re.sub(listed_price_type1, r"\3", element)
 
     # 600円(税込660円)
-    elif pattern3.match(element):
-        return re.sub(pattern3, r"\3", element)
+    elif listed_price_type2.match(element):
+        return re.sub(listed_price_type2, r"\3", element)
 
     # 500円（税込み550円）
-    elif pattern4.match(element):
-        return re.sub(pattern4, r"\3", element)
+    elif listed_price_type3.match(element):
+        return re.sub(listed_price_type3, r"\3", element)
 
     # 600円(税込み660円)
-    elif pattern5.match(element):
-        return re.sub(pattern5, r"\3", element)
+    elif listed_price_type4.match(element):
+        return re.sub(listed_price_type4, r"\3", element)
 
     # 500円（税抜550円）
-    elif pattern6.match(element):
-        return re.sub(pattern6, r"\1", element)
+    elif listed_price_type5.match(element):
+        return re.sub(listed_price_type5, r"\1", element)
 
     # 600円(税抜660円)
-    elif pattern7.match(element):
-        return re.sub(pattern7, r"\1", element)
+    elif listed_price_type6.match(element):
+        return re.sub(listed_price_type6, r"\1", element)
 
     # 500円（税抜きみ550円）
-    elif pattern8.match(element):
-        return re.sub(pattern8, r"\1", element)
+    elif listed_price_type7.match(element):
+        return re.sub(listed_price_type7, r"\1", element)
 
     # 600円(税抜きみ660円)
-    elif pattern9.match(element):
-        return re.sub(pattern9, r"\1", element)
+    elif listed_price_type8.match(element):
+        return re.sub(listed_price_type8, r"\1", element)
 
-    # elif "円（税込）" in element:
-    #     return element.replace("円（税込）", "")
+    # 各700円（税込）
+    elif listed_price_type9.match(element):
+        return re.sub(listed_price_type9, r"\1", element)
 
-    # elif "円(税込)" in element:
-    #     return element.replace("円(税込)", "")
+    # 各1200円(税抜)
+    elif listed_price_type10.match(element):
+        return re.sub(listed_price_type10, r"\1", element)
 
-    # elif "円（税込み）" in element:
-    #     return element.replace("円（税込み）", "")
+    # 各367円
+    elif listed_price_type11.match(element):
+        return re.sub(listed_price_type11, r"\1", element)
 
-    # elif "円(税込み)" in element:
-    #     return element.replace("円(税込み)", "")
+    # 440円（税込）
+    elif "円（税込）" in element:
+        return element.replace("円（税込）", "")
 
-    # elif "円（税抜）" in element:
-    #     return element.replace("円（税抜）", "")
+    elif "円(税込)" in element:
+        return element.replace("円(税込)", "")
 
-    # elif "円(税抜)" in element:
-    #     return element.replace("円(税抜)", "")
+    elif "円（税込み）" in element:
+        return element.replace("円（税込み）", "")
 
-    # elif "円（税抜き）" in element:
-    #     return element.replace("円（税抜き）", "")
+    elif "円(税込み)" in element:
+        return element.replace("円(税込み)", "")
 
-    # elif "円(税抜き)" in element:
-    #     return element.replace("円(税抜き)", "")
+    elif "円（税抜）" in element:
+        return element.replace("円（税抜）", "")
 
+    elif "円(税抜)" in element:
+        return element.replace("円(税抜)", "")
 
+    elif "円(税抜）" in element:
+        return element.replace("円(税抜）", "")
 
-    # 
-    # elif r"^(\d+)円（税込）" in element:
-    #     return re.sub(r"^(\d+)円（税込）", "", element)
+    elif "円（税抜き）" in element:
+        return element.replace("円（税抜き）", "")
 
-    # 500円（税込550円） → 550
-    # elif r"(\d+)円（税込(\d+)円）" in element:
-    #     return re.sub(r"(\d+)円（税込(\d+)円）", "", element)
+    elif "円(税抜き)" in element:
+        return element.replace("円(税抜き)", "")
 
-    # # 500円(税込550円) → 550
-    # elif r"(\d+)円\(税込(\d+)円\)" in element:
-    #     return re.sub(r"(\d+)円\(税込(\d+)円\)", r"\2", element)
+    elif "円（税別）" in element:
+        return element.replace("円（税別）", "")
 
-    # elif "円" in element:
-    #     return element.replace("円", "")
+    elif "円(税別)" in element:
+        return element.replace("円(税別)", "")
 
-    # elif "円" in element:
-    #     return element.replace("円", "")
+    elif "円" in element:
+        return element.replace("円", "")
 
     else:
         return element
