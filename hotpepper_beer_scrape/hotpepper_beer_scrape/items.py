@@ -31,6 +31,7 @@ def strip_yen(element):
     listed_price_type9 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円（税込）$")
     listed_price_type10 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円\(税抜\)$")
     listed_price_type11 = re.compile(r"^各(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)円$")
+    listed_price_type12 = re.compile(r"^\\(0|[1-9]\d*|[1-9]\d{0,2}(,\d{3})+)$")
 
     # 価格に何も入っていなかったら空とする
     if element is None:
@@ -80,7 +81,10 @@ def strip_yen(element):
     elif listed_price_type11.match(element):
         return re.sub(listed_price_type11, r"\1", element)
 
-    # 440円（税込）
+    # \350
+    elif listed_price_type12.match(element):
+        return re.sub(listed_price_type12, r"\1", element)
+
     elif "円（税込）" in element:
         return element.replace("円（税込）", "")
 

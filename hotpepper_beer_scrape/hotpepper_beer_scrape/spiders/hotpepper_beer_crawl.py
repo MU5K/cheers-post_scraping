@@ -13,7 +13,10 @@ class HotpepperBeerCrawlSpider(CrawlSpider):
     rules = (
         # リンクを辿ってパースする。`follow`は、リンク先ページで同じ`XPATH`があった場合にリンクを辿ってしまうため`False`に設定する必要がある
         Rule(LinkExtractor(restrict_xpaths='//h3[contains(@class, "shopDetailStoreName")]/a'), callback='parse_item', follow=False),
-        # Rule(LinkExtractor(allow=('drink/')), callback='parse_item', follow=False), # 初期のトライ
+
+        # 初期のトライ・リンクをたどるのは簡単だったがこれではデータを引き継いでページを遷移することができなかった
+        # Rule(LinkExtractor(allow=('drink/')), callback='parse_item', follow=False),
+
         #TODO 検索結果の2ページ目以降の取得
         Rule(LinkExtractor(restrict_xpaths='//ul[@class="pageLinkLinearBasic cf"]/li/a[contains(text(), "次へ")]'))
     )
@@ -26,7 +29,7 @@ class HotpepperBeerCrawlSpider(CrawlSpider):
         loader.add_xpath('restaurant_tel', '//th[contains(text(), "電話")]/following-sibling::td[1]/div/div[@class="qualificationTel"]/span/text()')
         loader.add_xpath('restaurant_url', '//div[@class="shopInfoMailContents"]/a/@href')
         drink_page = response.xpath('//div[@class="globalNav"]/ul[@class="globalNavList"]/li[@class="jscShopNavTab"]/div/ul/li/a[contains(text(), "ドリンク")]/@href').get()
-        # href を urljoin() で絶対パスに変換
+        # href を urljoin() で絶対パスに変換・フルパスじゃないと遷移できない
         drink_page = scrapy.Request(url=response.urljoin(drink_page), callback=self.parse_item_detail, meta={'item': loader.load_item()})
         yield drink_page
 
@@ -40,7 +43,7 @@ class HotpepperBeerCrawlSpider(CrawlSpider):
 
 
 ######################################################################
-##### 動くやつ 別バージョン
+##### Item Loadersではないバージョン
 ######################################################################
     # def parse_item(self, response):
     #     item = RestaurantItem()

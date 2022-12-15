@@ -8,11 +8,6 @@
 from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
 
-# class CheckItemPipeline:
-#     def process_item(self, item, spider):
-#         item['restaurant_name'] = item['restaurant_name'].replace("\n\t\t\t\t\t\t", "")
-#         return item
-
 # 値のバリデーションチェック
 class ValidationPipeline(object):
     def process_item(self, item, spider):
