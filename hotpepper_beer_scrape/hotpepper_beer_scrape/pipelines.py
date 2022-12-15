@@ -16,13 +16,15 @@ from scrapy.exceptions import DropItem
 # 値のバリデーションチェック
 class ValidationPipeline(object):
     def process_item(self, item, spider):
-        if item['restaurant_address'] is None or item['restaurant_address'] == '':
-            raise DropItem('Missing value: restaurant_address')
 
         if item['drink_name'] is None or item['drink_name'] == '':
             raise DropItem('Missing value: drink_name')
 
         if item['drink_price'] is None or item['drink_price'] == '':
             raise DropItem('Missing value: drink_price')
+
+        # # `-`のみの場合削除しようとしたが削除できなかった
+        # if item['drink_name'] == 'ビール' and item['drink_price'] == '-':
+        #     raise DropItem('Missing value: drink_price')
 
         return item
