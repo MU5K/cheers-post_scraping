@@ -88,3 +88,4 @@ HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 FEED_EXPORT_ENCODING = 'utf-8'
+DEPTH_LIMIT = 2
