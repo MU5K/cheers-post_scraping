@@ -5,6 +5,7 @@ import logging
 from hotpepper_beer_scrape.items import RestaurantItem
 from scrapy.loader import ItemLoader
 
+# 参考URL: https://stackoverflow.com/questions/39681269/scrapy-populate-items-with-item-loaders-over-multiple-pages
 class HotpepperBeerCrawlSpider(CrawlSpider):
     name = 'hotpepper_beer_crawl'
     allowed_domains = ['www.hotpepper.jp']
