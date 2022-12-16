@@ -16,7 +16,7 @@ def strip_comma(element):
         return element.replace(",", "")
     return element
 
-def strip_integer(element):
+def convert_integer(element):
     if element:
         return int(element)
     return 0
@@ -37,5 +37,5 @@ class RestaurantItem(scrapy.Item):
     )
     drink_name = scrapy.Field()
     drink_price = scrapy.Field(
-        input_processor = MapCompose(strip_yen, strip_comma, strip_integer)
+        input_processor = MapCompose(strip_yen, strip_comma)
     )
