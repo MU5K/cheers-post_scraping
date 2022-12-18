@@ -29,6 +29,7 @@ class HotpepperBeerCrawlSpider(CrawlSpider):
         loader.add_xpath('restaurant_address', '//th[contains(text(), "住所")]/following-sibling::td[1]/address/text()')
         loader.add_xpath('restaurant_tel', '//th[contains(text(), "電話")]/following-sibling::td[1]/div/div[@class="qualificationTel"]/span/text()')
         loader.add_xpath('restaurant_url', '//div[@class="shopInfoMailContents"]/a/@href')
+        loader.add_xpath('restaurant_genre', '//dt[contains(text(), "ジャンル")]/following-sibling::dd/p/a/text()')
         drink_page = response.xpath('//div[@class="globalNav"]/ul[@class="globalNavList"]/li[@class="jscShopNavTab"]/div/ul/li/a[contains(text(), "ドリンク")]/@href').get()
         # href を urljoin() で絶対パスに変換・フルパスじゃないと遷移できない
         drink_page = scrapy.Request(url=response.urljoin(drink_page), callback=self.parse_item_detail, meta={'item': loader.load_item()})

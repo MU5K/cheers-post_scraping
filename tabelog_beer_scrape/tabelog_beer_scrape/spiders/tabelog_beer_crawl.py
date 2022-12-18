@@ -41,6 +41,7 @@ class TabelogBeerCrawlSpider(CrawlSpider):
         loader.add_xpath('restaurant_address', '//p[@class="rstinfo-table__address"]/descendant::node()/text()')
         loader.add_xpath('restaurant_tel', '//th[contains(text(),"予約・")]/following-sibling::node()/p/strong[@class="rstinfo-table__tel-num"]/text()')
         loader.add_xpath('restaurant_url', '//li[@class="rstdtl-navi__sublist-item is-selected"]/a/@href')
+        loader.add_xpath('restaurant_genre', '//th[contains(text(), "ジャンル")]/following-sibling::td/span/text()')
         loader.add_value('drink_name', drink_names)
         loader.add_value('drink_price', drink_prices)
         # loader.add_xpath('drink_price', '//div[@class="rstdtl-menu-lst__info-inner"]/p[2]/text()')
@@ -48,9 +49,9 @@ class TabelogBeerCrawlSpider(CrawlSpider):
         yield loader.load_item()
 
         # yield {
-        #     'restaurant_name': response.xpath('//div[@class="rstinfo-table__name-wrap"]/descendant::node()/text()').get(),
-        #     'restaurant_address': response.xpath('//p[@class="rstinfo-table__address"]/descendant::node()/text()').getall(),
-        #     'restaurant_url': response.xpath('//li[@class="rstdtl-navi__sublist-item is-selected"]/a/@href').get(),
+        #     'tabelog_name': response.xpath('//div[@class="rstinfo-table__name-wrap"]/descendant::node()/text()').get(),
+        #     'tabelog_address': response.xpath('//p[@class="rstinfo-table__address"]/descendant::node()/text()').getall(),
+        #     'tabelog_url': response.xpath('//li[@class="rstdtl-navi__sublist-item is-selected"]/a/@href').get(),
         #     'drink_menu': response.xpath('//p[@class="rstdtl-menu-lst__menu-title"]/text()').getall(),
         #     'drink_price': response.xpath('//p[@class="rstdtl-menu-lst__price"]/text()').getall()
         # }

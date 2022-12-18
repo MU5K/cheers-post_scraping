@@ -165,6 +165,11 @@ class RestaurantItem(scrapy.Item):
         output_processor = TakeFirst()
     )
 
+    restaurant_genre = scrapy.Field(
+        input_processor = MapCompose(strip_spaces),
+        # output_processor = TakeFirst()
+    )
+
     drink_name = scrapy.Field()
 
     drink_price = scrapy.Field(
