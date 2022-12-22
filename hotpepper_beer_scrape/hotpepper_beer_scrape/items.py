@@ -42,7 +42,7 @@ def strip_yen(element):
     elif listed_price_type1.match(element):
         return re.sub(listed_price_type1, r"\3", element)
 
-    # 600円(税込550円)
+    # 500円(税込550円)
     elif listed_price_type2.match(element):
         return re.sub(listed_price_type2, r"\3", element)
 
@@ -50,7 +50,7 @@ def strip_yen(element):
     elif listed_price_type3.match(element):
         return re.sub(listed_price_type3, r"\3", element)
 
-    # 600円(税込み550円)
+    # 500円(税込み550円)
     elif listed_price_type4.match(element):
         return re.sub(listed_price_type4, r"\3", element)
 
