@@ -1,6 +1,7 @@
 .scrapy_env
 
 hotpepper_beer_scrape/.scrapy
+hotpepper_beer_scrape/export_menu
 hotpepper_beer_scrape/scrapy.cfg
 hotpepper_beer_scrape/hotpepper_beer_scrape/__pycache__
 hotpepper_beer_scrape/hotpepper_beer_scrape/__init__.py
@@ -9,22 +10,9 @@ hotpepper_beer_scrape/hotpepper_beer_scrape/spiders/__init__.py
 
 
 tabelog_beer_scrape/.scrapy
+tabelog_beer_scrape/export_menu
 tabelog_beer_scrape/scrapy.cfg
 tabelog_beer_scrape/tabelog_beer_scrape/__pycache__
 tabelog_beer_scrape/tabelog_beer_scrape/__init__.py
 tabelog_beer_scrape/tabelog_beer_scrape/spiders/__pycache__
 tabelog_beer_scrape/tabelog_beer_scrape/spiders/__init__.py
-
-
-tabelog_beer_scrape_bk/.scrapy
-tabelog_beer_scrape_bk/scrapy.cfg
-tabelog_beer_scrape_bk/tabelog_beer_scrape/__pycache__
-tabelog_beer_scrape_bk/tabelog_beer_scrape/__init__.py
-tabelog_beer_scrape_bk/tabelog_beer_scrape/spiders/__pycache__
-tabelog_beer_scrape_bk/tabelog_beer_scrape/spiders/__init__.py
-
-
-retty_beer_scrape/.scrapy
-retty_beer_scrape/scrapy.cfg
-retty_beer_scrape/retty_beer_scrape/__pycache__
-retty_beer_scrape/retty_beer_scrape/spiders/__pycache__
