@@ -5,6 +5,7 @@ hotpepper_beer_scrape/export_menu
 hotpepper_beer_scrape/scrapy.cfg
 hotpepper_beer_scrape/hotpepper_beer_scrape/__pycache__
 hotpepper_beer_scrape/hotpepper_beer_scrape/__init__.py
+hotpepper_beer_scrape/hotpepper_beer_scrape/middlewares.py
 hotpepper_beer_scrape/hotpepper_beer_scrape/spiders/__pycache__
 hotpepper_beer_scrape/hotpepper_beer_scrape/spiders/__init__.py
 
@@ -14,5 +15,6 @@ tabelog_beer_scrape/export_menu
 tabelog_beer_scrape/scrapy.cfg
 tabelog_beer_scrape/tabelog_beer_scrape/__pycache__
 tabelog_beer_scrape/tabelog_beer_scrape/__init__.py
+tabelog_beer_scrape/tabelog_beer_scrape/middlewares.py
 tabelog_beer_scrape/tabelog_beer_scrape/spiders/__pycache__
 tabelog_beer_scrape/tabelog_beer_scrape/spiders/__init__.py
